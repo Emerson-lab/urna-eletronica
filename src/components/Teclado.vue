@@ -2,27 +2,27 @@
   <div class="urna-teclado">
     <div class="urna-teclado-numerico">
       <div class="urna-teclado-numerico-linha">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
+        <button v-on:click="adcionarNumero(1)">1</button>
+        <button v-on:click="adcionarNumero(2)">2</button>
+        <button v-on:click="adcionarNumero(3)">3</button>
       </div>
       <div class="urna-teclado-numerico-linha">
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
+        <button v-on:click="adcionarNumero(4)">4</button>
+        <button v-on:click="adcionarNumero(5)">5</button>
+        <button v-on:click="adcionarNumero(6)">6</button>
       </div>
       <div class="urna-teclado-numerico-linha">
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
+        <button v-on:click="adcionarNumero(7)">7</button>
+        <button v-on:click="adcionarNumero(8)">8</button>
+        <button v-on:click="adcionarNumero(9)">9</button>
       </div>
       <div class="urna-teclado-numerico-linha">
-        <button>0</button>
+        <button v-on:click="adcionarNumero(0)">0</button>
       </div>
     </div>
     <div class="urna-teclado-acoes">
       <button class="btn-branco">branco</button>
-      <button class="btn-corrige">corrige</button>
+      <button class="btn-corrige" v-on:click="corrigir()">corrige</button>
       <button class="btn-confirma">confirma</button>
     </div>
   </div>
@@ -31,6 +31,10 @@
 <script>
 export default {
   name: "Teclado",
+  props: {
+    adcionarNumero: Function,
+    corrigir: Function,
+  },
 };
 </script>
 
@@ -52,9 +56,12 @@ export default {
   margin-bottom: 20px;
 }
 
+.urna-teclado-numerico-linha button:active {
+  transform: translate3d(3px, 3px, 3px);
+}
+
 .urna-teclado-numerico {
   width: 100%;
-
 }
 
 .urna-teclado-numerico button {
@@ -63,7 +70,7 @@ export default {
   font-size: 30px;
   border-radius: 5px;
   width: 80px;
-  height: 50px; 
+  height: 50px;
 }
 
 .urna-teclado-acoes {
@@ -80,9 +87,16 @@ export default {
   text-transform: uppercase;
 }
 
+.btn-branco:active,
+.btn-corrige:active,
+.btn-confirma:active {
+  transform: translate3d(3px, 3px, 3px);
+}
+
 .btn-branco {
   background-color: var(--ballot-box-white-button-color);
 }
+
 .btn-corrige {
   background-color: var(--ballot-box-correct-button-color);
 }
